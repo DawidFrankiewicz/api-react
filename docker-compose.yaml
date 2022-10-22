@@ -16,7 +16,7 @@ services:
     stdin_open: true
     tty: true
   mongo:
-    image: mongo:latest
+    image: mongo:6.0.2-focal
     container_name: mongo_container
     ports:
       - 27017:27017
