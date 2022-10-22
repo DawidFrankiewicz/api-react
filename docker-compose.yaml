@@ -1,0 +1,29 @@
+version: '3.8'
+services:
+  node-api:
+    build: ./nodejs-api
+    container_name: nodejs-api_container
+    ports:
+      - 5000:8080
+    restart: always
+    links:
+      - mongo
+  react-app:
+    build: ./display-api-react
+    container_name: react-app_container
+    ports:
+      - 3000:3000
+    stdin_open: true
+    tty: true
+  mongo:
+    image: mongo:latest
+    container_name: mongo_container
+    ports:
+      - 27017:27017
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=api_db_user
+      - MONGO_INITDB_ROOT_PASSWORD=api_db_passXYZ
+    volumes:
+      - mongo-data:/data/db
+volumes:
+  mongo-data: {}

@@ -1,0 +1,39 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+display-api-react/node_modules
+display-api-react/.pnp
+display-api-react/.pnp.js
+nodejs-api/node_modules
+nodejs-api/.pnp
+nodejs-api/.pnp.js
+# testing
+display-api-react/coverage
+nodejs-api/coverage
+
+# production
+display-api-react/build
+nodejs-api/build
+
+# misc
+mongo-data/journal
+
+nodejs-api/.DS_Store
+nodejs-api/.env.local
+nodejs-api/.env.development.local
+nodejs-api/.env.test.local
+nodejs-api/.env.production.local
+
+nodejs-api/npm-debug.log*
+nodejs-api/yarn-debug.log*
+nodejs-api/yarn-error.log*
+
+display-api-react/.DS_Store
+display-api-react/.env.local
+display-api-react/.env.development.local
+display-api-react/.env.test.local
+display-api-react/.env.production.local
+
+display-api-react/npm-debug.log*
+display-api-react/yarn-debug.log*
+display-api-react/yarn-error.log*
