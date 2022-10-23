@@ -7,7 +7,7 @@
  - [```localhost:5000```](http://localhost:5000/) - backend nodejs app 
  - [```localhost:5000/api/videos```](http://localhost:5000/api/videos) - returns api videos data
 # About app
-Code includes seperate backend and frontend apps. Backend also uses database to serve api.
+Code includes seperate backend api app and frontend apps. Backend api also uses database to serve api.
  - [```./display-api-react```](./display-api-react) is a react frontend app that uses api.
  - [```./nodejs-api```](./nodejs-api) is a nodejs backend server that uses mongodb.
  - [```./mongo-data```](./mongo-data) is a mongo database used to store api data.
