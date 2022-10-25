@@ -11,7 +11,7 @@ app.use(cors());
 const videos = require('./routes/api/videos');
 
 app.get('/', (req, res) => {
-	res.send('Hello World! Node api server is up! Go to /api/post to see the posts data.');
+	res.send('Hello World! Node api server is up! Go to /api/videos to see the data.');
 });
 
 app.use('/api/videos', videos);
