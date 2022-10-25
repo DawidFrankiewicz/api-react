@@ -2,6 +2,7 @@ import './App.css';
 import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
+import VideosList from './components/VideosList';
 
 function App() {
 	const [video, setVideo] = useState(null);
@@ -28,7 +29,7 @@ function App() {
 				'Content-Type': 'application/json',
 			},
 			data: {
-				text: newData,
+				url: newData,
 			},
 			url: 'http://localhost:5000/api/videos',
 			withCredentials: false,
@@ -45,8 +46,17 @@ function App() {
 		});
 
 		setApiData(result.data);
-		typeof result.data[0] !== typeof undefined ? setVideo(result.data[0].text) : setVideo(null);
+		typeof result.data[0] !== typeof undefined ? setVideo(result.data[0].url) : setVideo(null);
 		setLoading(false);
+	};
+
+	const deleteData = async (id) => {
+		await axios({
+			method: 'delete',
+			url: `http://localhost:5000/api/videos/${id}`,
+			withCredentials: false,
+		});
+		fetchData();
 	};
 
 	const logDatabase = () => {
@@ -68,8 +78,10 @@ function App() {
 				<input type="url" value={newData} onChange={itemEvent} />
 				<button type='submit'>Dodaj</button>
 			</form>
+			{/* <VideosList delete={deleteData}/> */}
 		</div>
 	);
 }
 
 export default App;
+

@@ -16,7 +16,7 @@ display-api-react/build
 nodejs-api/build
 
 # misc
-mongo-data/journal
+mongo-data
 
 nodejs-api/.DS_Store
 nodejs-api/.env.local

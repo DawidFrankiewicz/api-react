@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
 router.post('/', async (req, res) => {
 	const videos = await loadvideosCollection();
 	await videos.insertOne({
-		text: req.body.text,
+		url: req.body.url,
 		createdAt: new Date()
 	});
 	res.status(201).send();
