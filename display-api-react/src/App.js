@@ -59,6 +59,10 @@ function App() {
 		fetchData();
 	};
 
+	const selectVideo = async (id) => {
+		setVideo(apiData.find((video) => video._id === id).url);
+	};
+
 	const logDatabase = () => {
 		console.log(apiData);
 	};
@@ -75,10 +79,10 @@ function App() {
 			{!loading && !video && <p>Brak danych</p>}
 			<h2>Dodaj url filmu</h2>
 			<form onSubmit={addData}>
-				<input type="url" value={newData} onChange={itemEvent} />
-				<button type='submit'>Dodaj</button>
+				<input className='text-gray-800' type="url" value={newData} onChange={itemEvent} />
+				<button className='bg-green-500' type='submit'>Dodaj</button>
 			</form>
-			{/* <VideosList delete={deleteData}/> */}
+			<VideosList videos={apiData} delete={deleteData} select={selectVideo}/>
 		</div>
 	);
 }

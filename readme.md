@@ -2,6 +2,7 @@
 ## Run docker contaienrs
  - Build ```docker-compose build```
  - Start ```docker-compose up```
+ - Import sample database from [/mongodb-export/videos.json](/mongodb-export/videos.json)
 ## Access app
  - [```localhost:3000```](http://localhost:3000/) - frontend react app 
  - [```localhost:5000```](http://localhost:5000/) - backend nodejs app 
