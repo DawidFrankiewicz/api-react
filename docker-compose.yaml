@@ -2,19 +2,26 @@ version: '3.8'
 services:
   node-api:
     build: ./nodejs-api
+    command: nodemon -L server/index.js
     container_name: nodejs-api_container
     ports:
       - 5000:8080
     restart: always
     links:
       - mongo
+    volumes:
+      - ./nodejs-api:/app
   react-app:
     build: ./display-api-react
+    environment:
+      # - CHOKIDAR_USEPOLLING=true # create-ui-app <= 5.x
+      - WATCHPACK_POLLING=true # create-ui-app >= 5.x
     container_name: react-app_container
     ports:
       - 3000:3000
-    stdin_open: true
-    tty: true
+    volumes:
+      - /app/node_modules
+      - ./display-api-react:/app
   mongo:
     image: mongo:6.0.2-focal
     container_name: mongo_container
