@@ -11,8 +11,12 @@ router.get('/', async (req, res) => {
 
 // Add Post
 router.post('/', async (req, res) => {
+	if(!req.body.title){
+		req.body.title = req.body.url;
+	}
 	const videos = await loadvideosCollection();
 	await videos.insertOne({
+		title: req.body.title,
 		url: req.body.url,
 		createdAt: new Date()
 	});

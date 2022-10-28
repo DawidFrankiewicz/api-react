@@ -3,11 +3,12 @@ import React from 'react';
 import axios from 'axios';
 import {useEffect, useState} from 'react';
 import VideosList from './components/VideosList';
+import AddViedoForm from './components/AddVideoForm';
 
 function App() {
 	const [video, setVideo] = useState(null);
 	const [apiData, setApiData] = useState([]);
-	const [newData, setNewData] = useState('');
+	const [newData, setNewData] = useState({title: '', url: ''});
 	const [loading, setLoading] = useState(true);
 	const [onLoad, setOnLoad] = useState(true);
 
@@ -29,7 +30,8 @@ function App() {
 				'Content-Type': 'application/json',
 			},
 			data: {
-				url: newData,
+				title: newData.title ? newData.title : newData.url,
+				url: newData.url,
 			},
 			url: 'http://localhost:5000/api/videos',
 			withCredentials: false,
@@ -67,22 +69,23 @@ function App() {
 		console.log(apiData);
 	};
 
-	const itemEvent = (event) => {
-		setNewData(event.target.value);
+	const handleInputsChange = (event) => {
+		setNewData(prev => ({
+			...prev,
+			[event.target.name]: event.target.value,
+		}));
 	};
 
 	return (
 		<div className="App">
-			<h1>Film</h1>
+			<h1 className="text-2xl font-bold">Film</h1>
 			{loading && <h2>Loading...</h2>}
-			{!loading && video && <iframe width="560" height="315" src={video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}
+			{!loading && video && <iframe className="max-w-full" width="560" height="315" src={video} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>}
 			{!loading && !video && <p>Brak danych</p>}
-			<h2>Dodaj url filmu</h2>
-			<form onSubmit={addData}>
-				<input className='text-gray-800' type="url" value={newData} onChange={itemEvent} />
-				<button className='bg-green-500' type='submit'>Dodaj</button>
-			</form>
-			<VideosList videos={apiData} delete={deleteData} select={selectVideo}/>
+			<div className="flex container gap-8 my-6 flex-col md:flex-row">
+				<AddViedoForm addData={addData} handleInputsChange={handleInputsChange} newData={newData} />
+				<VideosList videos={apiData} delete={deleteData} select={selectVideo}/>
+			</div>
 		</div>
 	);
 }
