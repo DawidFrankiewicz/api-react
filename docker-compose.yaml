@@ -2,7 +2,7 @@ version: '3.8'
 services:
   node-api:
     build: ./nodejs-api
-    command: nodemon -L server/index.js
+    command: npm run dev
     container_name: nodejs-api_container
     ports:
       - 5000:8080

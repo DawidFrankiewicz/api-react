@@ -21,3 +21,6 @@ Code includes seperate backend api app and frontend apps. Backend api also uses 
  - Connect ```docker exec -it mongo_container mongosh -u api_db_user -p api_db_passXYZ```
  - Change database ```use nodejs_api```
  - Display collection ```db.videos.find()```
+
+# Known issues
+  - [ ] Quick fix - Run 'npm install' in nodejs-api container to install dependencies if error occures
